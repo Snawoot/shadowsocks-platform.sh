@@ -2,10 +2,10 @@
 
 [[ "$SS_PASSWORD" ]] || {
 	2>&1 echo "Empty shadowsocks password! Please set SS_PASSWORD environment variable."
-	sleep infinity
+	exec sleep infinity
 }
 
-./go-shadowsocks2 \
+exec ./go-shadowsocks2 \
 	-s "ss://AEAD_CHACHA20_POLY1305:${SS_PASSWORD}@:${PORT}" \
 	-verbose \
 	-plugin v2ray-plugin \
