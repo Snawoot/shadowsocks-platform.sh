@@ -5,11 +5,12 @@
 name: app
 
 # The runtime the application uses.
-type: 'golang:1.14'
+type: 'golang:1.15'
 
 variables:
     env:
-        MATTERMOST_VERSION: '5.26.0'
+        V2RAY_VERSION: 'v1.3.1'
+        GOSS_VERSION: 'v0.1.5'
 
 # The hooks that will be triggered when the package is deployed.
 hooks:
@@ -17,9 +18,9 @@ hooks:
     build: !include
         type: string
         path: build.sh
-    deploy: !include
-        type: string
-        path: deploy.sh
+#    deploy: !include
+#        type: string
+#        path: deploy.sh
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -29,12 +30,12 @@ web:
   commands:
     start: ./start.sh
   locations:
-        /:
-            # Route all requests to the Go app, unconditionally.
-            # If you want some files served directly by the web server without hitting Go, see
-            # https://docs.platform.sh/configuration/app/web.html
-            allow: false
-            passthru: true
+    /:
+      # Route all requests to the Go app, unconditionally.
+      # If you want some files served directly by the web server without hitting Go, see
+      # https://docs.platform.sh/configuration/app/web.html
+      allow: false
+      passthru: true
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024

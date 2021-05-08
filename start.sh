@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-# Set the site url during the start command once routes are available
-MM_SERVICESETTINGS_SITEURL=$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key') ./bin/mattermost
+./go-shadowsocks2 \
+	-s "ss://AEAD_CHACHA20_POLY1305:${SS_PASSWORD}@:${PORT}" \
+	-verbose \
+	-plugin v2ray-plugin \
+	-plugin-opts 'server;path=${V2_PATH:-/v2}'
