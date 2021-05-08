@@ -3,15 +3,15 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://www.{default}/":
+"https://{default}/":
   primary: true
   type: upstream
   upstream: "app:http"
   cache:
     enabled: false
 
-"https://{default}/":
-  primary: true
+"https://www.{default}/":
+  primary: false
   type: upstream
   upstream: "app:http"
   cache:
